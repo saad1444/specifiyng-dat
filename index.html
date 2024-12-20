@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="date" id="userDate">
+    <button onclick="checkDifference()">Check Difference</button>
+    
+    <div id="result"></div>
+
+    <script>
+        function checkDifference(){
+            let currentDate = new Date();
+            let userDate = document.getElementById("userDate").value;  // Get the entered date
+            
+            if (!userDate) {
+                document.getElementById("result").innerText = "Please enter a date.";
+                return;
+            }
+
+            let newDate = new Date(userDate);  // Convert entered date to Date object
+            let diffMs = newDate.getTime() - currentDate.getTime();  // Calculate difference in milliseconds
+
+            // Convert the difference from milliseconds to other time units
+            let second = diffMs / 1000;
+            let minute = second / 60;
+            let hour = minute / 60;
+            let day = hour / 24;
+
+            // Display the difference in days
+            document.getElementById("result").innerText = `Difference: ${Math.floor(day)} days`;
+        }
+    </script>
+</body>
+</html>
